@@ -9,4 +9,6 @@ const client = createClient({
   });
 
   const builer = imageUrlBuilder(client);
-  export const urlFor = (source) => urlBuilder.image(source)
+  export const urlFor = (source) => urlBuilder.image(source);
+
+  export default client

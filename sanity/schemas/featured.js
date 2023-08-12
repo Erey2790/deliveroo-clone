@@ -1,7 +1,7 @@
 export default {
     name: "featured",
     type: "document",
-    title: "Featured Nenu Categories",
+    title: "Featured Menu Categories",
     fields: [
         {
             name: "name",
@@ -19,7 +19,7 @@ export default {
             name: "restaurants",
             type: "array",
             title: "Restaurants",
-            of: [{ type: "reference", to: [{ type: "restaurant"}] }]
+            of: [{ type: "reference", to: [{ type: "restaurant"}] }],
         }
     ]
 }
