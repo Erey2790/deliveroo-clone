@@ -4,6 +4,7 @@ import { ArrowRightIcon } from 'react-native-heroicons/outline'
 import RestaurantCard from './RestaurantCard'
 import client from '../sanity'
 
+
 const FeaturedRow = ({ id, title, description }) => {
 const [restaurants, setRestaurants] = useState([]);
 
@@ -25,8 +26,8 @@ const [restaurants, setRestaurants] = useState([]);
     .then((data) => {
       setRestaurants(data?.restaurants)
     })
-  }, [])
-  console.log(restaurants)
+  }, [id])
+  
 
   return (
     <View>
