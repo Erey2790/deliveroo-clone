@@ -8,7 +8,7 @@ const client = createClient({
     apiVersion: "2021-10-21"
   });
 
-  const builer = imageUrlBuilder(client);
-  export const urlFor = (source) => urlBuilder.image(source);
+  const builder = imageUrlBuilder(client);
+  export const urlFor = (source) => builder.image(source);
 
   export default client
