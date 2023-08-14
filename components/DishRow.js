@@ -11,7 +11,7 @@ const [ isPressed, setIsPressed ] = useState(false);
     
     <TouchableOpacity 
       onPress={() => setIsPressed(!isPressed)}
-      className="bg-white border p-4 border-gray-200">
+      className={`bg-white border p-4 border-gray-200 ${isPressed && "border-b-0"}`}>
       <View className="flex-row">
         <View className="flex-1 pr-2">
           <View>
@@ -39,12 +39,16 @@ const [ isPressed, setIsPressed ] = useState(false);
                   <TouchableOpacity>
                     <MinusCircleIcon
                       // color={DataTransferItemList.length > 0 ? "#00CCBB" : "gray"}
-                      size={40} />
+                      size={40}
+                      color="#00CCBB"
+                      />
                   </TouchableOpacity>
 
                   <Text>0</Text>
                   <TouchableOpacity>
-                    <PlusCircleIcon size={40}/>
+                    <PlusCircleIcon size={40}
+                    color="#00CCBB"
+                    />
                   </TouchableOpacity>
                 </View>
               </View>
