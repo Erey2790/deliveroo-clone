@@ -11,6 +11,7 @@ import {
   ChevronRightIcon
 } from "react-native-heroicons/solid";
 import DishRow from "../components/DishRow";
+import BasketIcon from "../components/BasketIcon";
 
 const RestaurantScreen = () => {
   const navigation = useNavigation();
@@ -36,6 +37,8 @@ const RestaurantScreen = () => {
     },
   } = useRoute();
   return (
+    <>
+    <BasketIcon />
     <ScrollView>
       <View className="relative">
         <Image
@@ -103,6 +106,7 @@ const RestaurantScreen = () => {
         ))}
       </View>
     </ScrollView>
+    </>
   );
 };
 
