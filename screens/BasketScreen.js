@@ -1,9 +1,10 @@
-import { View, Text, SafeAreaView } from "react-native";
+import { View, Text, SafeAreaView, TouchableOpacity } from "react-native";
 import React, { useState, useMemo } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { useDispatch, useSelector } from "react-redux";
 import { selectRestaurant } from "../features/restaurantSlice";
 import { selectBasketItems } from "../features/basketSlice";
+import { XCircleIcon } from "react-native-heroicons/solid";
 
 const BasketScreen = () => {
   const navigation = useNavigation();
@@ -28,6 +29,12 @@ useMemo(() => {
           <Text className="text-lg font-bold text-center">Basket</Text>
           <Text className="text-center text-gray-400">{restaurant.title}</Text>
         </View>
+        <TouchableOpacity
+          onPress={navigation.goBack}
+          className="rounded-full bg-gray-100 absolute top-3 right-5"
+        >
+          <XCircleIcon color="#00CCBB" height={50} width={50}/>
+        </TouchableOpacity>
       </View>
     </View>
    </SafeAreaView>
