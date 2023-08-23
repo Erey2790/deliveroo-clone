@@ -1,4 +1,4 @@
-import { View, Text } from "react-native";
+import { View, Text, SafeAreaView } from "react-native";
 import React, { useState, useMemo } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { useDispatch, useSelector } from "react-redux";
@@ -13,7 +13,7 @@ const BasketScreen = () => {
   const dispatch = useDispatch();
   
 useMemo(() => {
-  const groupedItems = items.reduce(() => {
+  const groupedItems = items.reduce((results, item) => {
     (results[items.id] = results[items.id] || []).push(item);
     return results;
   }, {});
@@ -21,9 +21,16 @@ useMemo(() => {
   setGroupedItemsInBasket(groupedItems)
 }, [items])
   return (
+   <SafeAreaView>
     <View>
-      <Text>BasketScreen</Text>
+      <View>
+        <View>
+          <Text className="text-lg font-bold text-center">Basket</Text>
+          <Text className="text-center text-gray-400">{restaurant.title}</Text>
+        </View>
+      </View>
     </View>
+   </SafeAreaView>
   );
 };
 
