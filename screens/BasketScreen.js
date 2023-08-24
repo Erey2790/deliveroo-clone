@@ -3,7 +3,7 @@ import React, { useState, useMemo } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { useDispatch, useSelector } from "react-redux";
 import { selectRestaurant } from "../features/restaurantSlice";
-import { removeFromBasket, selectBasketItems } from "../features/basketSlice";
+import { removeFromBasket, selectBasketItems, selectBasketTotal } from "../features/basketSlice";
 import { XCircleIcon } from "react-native-heroicons/solid";
 import { urlFor } from "../sanity";
 
@@ -11,6 +11,7 @@ const BasketScreen = () => {
   const navigation = useNavigation();
   const restaurant = useSelector(selectRestaurant);
   const items = useSelector(selectBasketItems);
+  const bastketTotal = useSelector(selectBasketTotal);
   const [groupedItemsInBasket, setGroupedItemsInBasket] = useState([])
   const dispatch = useDispatch();
   
@@ -51,10 +52,10 @@ useMemo(() => {
         </TouchableOpacity>
       </View>
 
-      <ScrollView>
+      <ScrollView className='divide-y divide-gray-200'>
         {Object.entries(groupedItemsInBasket).map(([key, items]) => (
-          <View key={key}>
-            <Text>{items.length} x</Text>
+          <View key={key} className='flex-row items-center space-x-3 bg-white py-2 px-5'>
+            <Text className='text-[#00CCBB]'>{items.length} x</Text>
             <Image
               source={{ uri: urlFor(items[0]?.image).url() }}
               className="h-12 w-12 rounded-full"
@@ -71,6 +72,23 @@ useMemo(() => {
           </View>
         ))}
       </ScrollView>
+
+      <View className='p-5 bg-white mt-5 space-y-4'>
+        <View className="flex-row justify-between">
+          <Text className='text-gray-400'>Subtotal</Text>
+          <Text className='text-gray-400'>{bastketTotal}</Text>
+        </View>
+
+        <View className="flex-row justify-between">
+          <Text className='text-gray-400'>Delivery Fee</Text>
+          <Text className='text-gray-400'>5.99</Text>
+        </View>
+
+        <View className="flex-row justify-between">
+          <Text>Order Total</Text>
+          <Text className='font-extrabold'>{bastketTotal + 5.99}</Text>
+        </View>
+      </View>
     </View>
    </SafeAreaView>
   );
