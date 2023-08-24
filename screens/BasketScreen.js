@@ -88,6 +88,10 @@ useMemo(() => {
           <Text>Order Total</Text>
           <Text className='font-extrabold'>{bastketTotal + 5.99}</Text>
         </View>
+
+        <TouchableOpacity className='rounded-lg bg-[#00CCBB] p-4'>
+          <Text className='text-center text-white text-lg font-bold'>Place Order</Text>
+        </TouchableOpacity>
       </View>
     </View>
    </SafeAreaView>
