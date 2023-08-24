@@ -1,10 +1,11 @@
-import { View, Text, SafeAreaView, TouchableOpacity, Image } from "react-native";
+import { View, Text, SafeAreaView, TouchableOpacity, Image, ScrollView } from "react-native";
 import React, { useState, useMemo } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { useDispatch, useSelector } from "react-redux";
 import { selectRestaurant } from "../features/restaurantSlice";
-import { selectBasketItems } from "../features/basketSlice";
+import { removeFromBasket, selectBasketItems } from "../features/basketSlice";
 import { XCircleIcon } from "react-native-heroicons/solid";
+import { urlFor } from "../sanity";
 
 const BasketScreen = () => {
   const navigation = useNavigation();
@@ -15,7 +16,7 @@ const BasketScreen = () => {
   
 useMemo(() => {
   const groupedItems = items.reduce((results, item) => {
-    (results[items.id] = results[items.id] || []).push(item);
+    (results[item.id] = results[item.id] || []).push(item);
     return results;
   }, {});
 
@@ -49,6 +50,27 @@ useMemo(() => {
           <Text className="text-[#00CCBB]">Change</Text>
         </TouchableOpacity>
       </View>
+
+      <ScrollView>
+        {Object.entries(groupedItemsInBasket).map(([key, items]) => (
+          <View key={key}>
+            <Text>{items.length} x</Text>
+            <Image
+              source={{ uri: urlFor(items[0]?.image).url() }}
+              className="h-12 w-12 rounded-full"
+            />
+            <Text className="flex-1">{items[0]?.name}</Text>
+
+            <Text className="text-gray-600">{items[0]?.price}</Text>
+            <TouchableOpacity>
+              <Text
+                className="text-[#00CCBB] text-xs"
+                onPress={() => dispatch(removeFromBasket({ id: key }))}
+              >Remove</Text>
+            </TouchableOpacity>
+          </View>
+        ))}
+      </ScrollView>
     </View>
    </SafeAreaView>
   );
